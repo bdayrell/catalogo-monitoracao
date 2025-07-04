@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Monitorable Units AWS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #11713F 0%, #0C502C 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left img {
+            height: 40px;
+        }
+
+        .header-right img {
+            height: 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .main-title-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .main-title-section h1 {
+            font-size: 2.5rem;
+            color: #11713F;
+            margin-bottom: 0.5rem;
+        }
+
+        .main-title-section p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .tier-essential-badge {
+            background: #F1A22D;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #F1A22D;
+        }
+
+        .intro-section h2 {
+            color: #11713F;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .definition-box {
+            background: linear-gradient(135deg, #11713F 0%, #0C502C 100%);
+            color: #F8F8F8;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .definition-box p {
+            color: #FFFFFF;
+        }
+
+        .definition-box p strong {
+            color: #F1A22D;
+        }
+
+        .definition-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #F1A22D;
+        }
+
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: #E7E7E7;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-header img {
+            height: 40px;
+            margin-right: 1rem;
+        }
+
+        .category-header h2 {
+            color: #0C502C;
+            font-size: 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #F1A22D;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            color: #11713F;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .service-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .mus-title {
+            color: #11713F;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .mus-list {
+            list-style: none;
+        }
+
+        .mus-list li {
+            background: #f8f9fa;
+            margin: 0.5rem 0;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #F1A22D;
+            transition: background 0.3s ease;
+        }
+
+        .mus-list li:hover {
+            background: #e9ecef;
+        }
+
+        .mu-name {
+            font-weight: 600;
+            color: #11713F;
+        }
+
+        .mu-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+
+        .mu-metrics {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 0.3rem;
+        }
+
+        .footer {
+            background: #11713F;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .header-left {
+                margin-bottom: 1rem;
+            }
+
+            .main-title-section h1 {
+                font-size: 2rem;
+            }
+
+            .main-title-section p {
+                font-size: 1rem;
+            }
+
+            .tier-essential-badge {
+                font-size: 0.9rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .intro-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .intro-section p {
+                font-size: 1rem;
+            }
+
+            .definition-box {
+                padding: 1rem;
+            }
+
+            .definition-box h3 {
+                font-size: 1.1rem;
+            }
+
+            .definition-box p {
+                font-size: 0.9rem;
+            }
+
+            .category-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem;
+            }
+
+            .category-header img {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+
+            .category-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 1rem;
+            }
+
+            .service-title {
+                font-size: 1.1rem;
+            }
+
+            .service-description {
+                font-size: 0.85rem;
+            }
+
+            .mus-title {
+                font-size: 1rem;
+            }
+
+            .mus-list li {
+                padding: 0.6rem 0.8rem;
+            }
+
+            .mu-name {
+                font-size: 0.9rem;
+            }
+
+            .mu-description,
+            .mu-metrics {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-left img {
+                height: 30px;
+            }
+
+            .header-right img {
+                height: 50px;
+            }
+
+            .main-title-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .main-title-section p {
+                font-size: 0.9rem;
+            }
+
+            .tier-essential-badge {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            .intro-section h2 {
+                font-size: 1.3rem;
+            }
+
+            .intro-section p {
+                font-size: 0.9rem;
+            }
+
+            .category-header h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <img src="logo-darede-white.png" alt="Logo Darede">
+        </div>
+        <div class="header-right">
+            <img src="selo-premier.svg" alt="Selo Parceiro Premier AWS">
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="main-title-section">
+            <h1>Catálogo de Monitorable Units AWS</h1>
+            <p>Tier Essential - Serviços Core para Monitoramento de Infraestrutura</p>
+            <span class="tier-essential-badge">Tier Essential</span>
+        </section>
+
+        <section class="intro-section">
+            <h2>O que são Monitorable Units (M.U.)?</h2>
+            <p>Uma <span class="highlight">Monitorable Unit (M.U.)</span> é qualquer unidade de monitoramento na infraestrutura que precisa ser acompanhada para garantir performance, disponibilidade e cumprimento de SLA.</p>
+            
+            <div class="definition-box">
+                <h3>Características Principais:</h3>
+                <p>• <strong>Identificável:</strong> Possui uma identidade única dentro do ambiente AWS<br>
+                • <strong>Configurável:</strong> Permite aplicação de configurações específicas de monitoramento<br>
+                • <strong>Gerador de Observabilidade:</strong> Emite métricas, logs e eventos<br>
+                • <strong>Unidade de Cobrança:</strong> Serve como base para precificação do serviço de monitoramento</p>
+            </div>
+        </section>
+
+        <!-- Conteúdo dinâmico será inserido aqui -->
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Darede. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const data = [
+  {
+    "categoria": "Analytics",
+    "servico_aws": "Amazon Athena",
+    "descricao": "Consulta dados no S3 usando SQL",
+    "recurso_monitoravel": "Consulta Athena",
+    "metricas_chave": ["Consultas falhas", "Dados verificados"]
+  },
+  {
+    "categoria": "Analytics",
+    "servico_aws": "Amazon Kinesis",
+    "descricao": "Processamento de streams em tempo real",
+    "recurso_monitoravel": "Kinesis Stream",
+    "metricas_chave": ["Dados recebidos", "Atraso no processamento"]
+  },
+  {
+    "categoria": "Analytics",
+    "servico_aws": "Amazon OpenSearch",
+    "descricao": "Busca e análise de dados",
+    "recurso_monitoravel": "Domínio OpenSearch",
+    "metricas_chave": ["Saúde do cluster", "Uso de CPU", "Espaço em disco"]
+  },
+  {
+    "categoria": "Analytics",
+    "servico_aws": "Amazon Redshift",
+    "descricao": "Data warehouse em nuvem",
+    "recurso_monitoravel": "Cluster Redshift",
+    "metricas_chave": ["Uso de CPU", "Consultas ativas", "Espaço em disco"]
+  },
+  {
+    "categoria": "Analytics",
+    "servico_aws": "AWS Glue",
+    "descricao": "Serviço ETL (Extração, Transformação, Carga)",
+    "recurso_monitoravel": "Job Glue",
+    "metricas_chave": ["Execuções bem-sucedidas", "Tempo de execução"]
+  },
+  {
+    "categoria": "Armazenamento",
+    "servico_aws": "Amazon EFS",
+    "descricao": "Sistema de arquivos elástico",
+    "recurso_monitoravel": "Sistema de Arquivos EFS",
+    "metricas_chave": ["Espaço usado", "Operações de leitura/escrita"]
+  },
+  {
+    "categoria": "Armazenamento",
+    "servico_aws": "Amazon S3",
+    "descricao": "Armazenamento de objetos",
+    "recurso_monitoravel": "Bucket S3",
+    "metricas_chave": ["Tamanho total", "Número de objetos", "Solicitações"]
+  },
+  {
+    "categoria": "Banco de Dados",
+    "servico_aws": "Amazon DynamoDB",
+    "descricao": "Banco de dados NoSQL serverless",
+    "recurso_monitoravel": "Tabela DynamoDB",
+    "metricas_chave": ["Solicitações bem-sucedidas", "Solicitações limitadas"]
+  },
+  {
+    "categoria": "Banco de Dados",
+    "servico_aws": "Amazon RDS",
+    "descricao": "Banco de dados relacional gerenciado",
+    "recurso_monitoravel": "Instância RDS",
+    "metricas_chave": ["Uso de CPU", "Conexões ativas", "Latência de consultas"]
+  },
+  {
+    "categoria": "Banco de Dados",
+    "servico_aws": "Amazon RDS",
+    "descricao": "Banco de dados relacional gerenciado",
+    "recurso_monitoravel": "Banco de Dados Aurora",
+    "metricas_chave": ["Replicação", "Transações pendentes"]
+  },
+  {
+    "categoria": "Computing",
+    "servico_aws": "Amazon EC2",
+    "descricao": "Máquinas virtuais escaláveis na nuvem",
+    "recurso_monitoravel": "Instância EC2",
+    "metricas_chave": ["Uso de CPU", "Memória livre", "Tráfego de rede", "Operações de disco"]
+  },
+  {
+    "categoria": "Computing",
+    "servico_aws": "AWS Auto Scaling",
+    "descricao": "Ajusta capacidade automaticamente",
+    "recurso_monitoravel": "Auto Scaling Group",
+    "metricas_chave": ["Instâncias em execução", "Escalonamentos realizados"]
+  },
+  {
+    "categoria": "Computing",
+    "servico_aws": "AWS Elastic Beanstalk",
+    "descricao": "Implanta e escala aplicações web",
+    "recurso_monitoravel": "Ambiente Beanstalk",
+    "metricas_chave": ["Saúde do ambiente", "Instâncias com problemas"]
+  },
+  {
+    "categoria": "Computing",
+    "servico_aws": "AWS Lambda",
+    "descricao": "Executa código sem gerenciar servidores",
+    "recurso_monitoravel": "Função Lambda",
+    "metricas_chave": ["Execuções", "Falhas", "Tempo de execução", "Uso de memória"]
+  },
+  {
+    "categoria": "Containers",
+    "servico_aws": "Amazon ECS",
+    "descricao": "Orquestração de contêineres Docker",
+    "recurso_monitoravel": "Cluster ECS",
+    "metricas_chave": ["Uso de CPU", "Uso de memória"]
+  },
+  {
+    "categoria": "Containers",
+    "servico_aws": "Amazon ECS",
+    "descricao": "Orquestração de contêineres Docker",
+    "recurso_monitoravel": "Serviço ECS",
+    "metricas_chave": ["Tarefas em execução", "Tarefas pendentes"]
+  },
+  {
+    "categoria": "Containers",
+    "servico_aws": "Amazon EKS",
+    "descricao": "Kubernetes gerenciado na AWS",
+    "recurso_monitoravel": "Cluster EKS",
+    "metricas_chave": ["Saúde dos nós", "Tráfego de rede entre pods"]
+  },
+  {
+    "categoria": "Containers",
+    "servico_aws": "Amazon EKS",
+    "descricao": "Kubernetes gerenciado na AWS",
+    "recurso_monitoravel": "Grupo de Nós EKS",
+    "metricas_chave": ["Disponibilidade", "Uso de recursos"]
+  },
+  {
+    "categoria": "Integration",
+    "servico_aws": "Amazon MQ",
+    "descricao": "Mensageria gerenciada com protocolos abertos",
+    "recurso_monitoravel": "Broker Amazon MQ",
+    "metricas_chave": ["Conexões ativas", "Mensagens pendentes"]
+  },
+  {
+    "categoria": "Integration",
+    "servico_aws": "Amazon SNS",
+    "descricao": "Serviço de notificações push",
+    "recurso_monitoravel": "Tópico SNS",
+    "metricas_chave": ["Mensagens enviadas", "Mensagens falhas"]
+  },
+  {
+    "categoria": "Integration",
+    "servico_aws": "Amazon SQS",
+    "descricao": "Fila de mensagens gerenciada",
+    "recurso_monitoravel": "Fila SQS",
+    "metricas_chave": ["Mensagens pendentes", "Tempo de espera médio"]
+  },
+  {
+    "categoria": "Integration",
+    "servico_aws": "AWS Step Functions",
+    "descricao": "Orquestração de workflows",
+    "recurso_monitoravel": "State Machine",
+    "metricas_chave": ["Execuções bem-sucedidas", "Execuções falhas"]
+  },
+  {
+    "categoria": "Network and Content Delivery",
+    "servico_aws": "Amazon API Gateway",
+    "descricao": "Gerenciamento de APIs",
+    "recurso_monitoravel": "API REST",
+    "metricas_chave": ["Chamadas", "Latência", "Erros 4xx/5xx"]
+  },
+  {
+    "categoria": "Network and Content Delivery",
+    "servico_aws": "Amazon CloudFront",
+    "descricao": "Rede de entrega de conteúdo global",
+    "recurso_monitoravel": "Distribuição CloudFront",
+    "metricas_chave": ["Solicitações", "Taxa de erros", "Taxa de acertos no cache"]
+  },
+  {
+    "categoria": "Network and Content Delivery",
+    "servico_aws": "Amazon Route 53",
+    "descricao": "DNS e registro de domínios",
+    "recurso_monitoravel": "Health Check",
+    "metricas_chave": ["Status (Saudável/Não saudável)", "Tempo de resposta"]
+  },
+  {
+    "categoria": "Network and Content Delivery",
+    "servico_aws": "Elastic Load Balancing",
+    "descricao": "Distribui tráfego entre instâncias",
+    "recurso_monitoravel": "ALB",
+    "metricas_chave": ["Solicitações", "Tempo de resposta", "Erros 5xx"]
+  },
+  {
+    "categoria": "Network and Content Delivery",
+    "servico_aws": "Elastic Load Balancing",
+    "descricao": "Distribui tráfego entre instâncias",
+    "recurso_monitoravel": "NLB",
+    "metricas_chave": ["Conexões ativas", "Tráfego processado"]
+  },
+  {
+    "categoria": "Segurança",
+    "servico_aws": "AWS WAF",
+    "descricao": "Firewall para aplicações web",
+    "recurso_monitoravel": "Web ACL",
+    "metricas_chave": ["Solicitações bloqueadas", "Solicitações permitidas"]
+  }
+];
+
+        const categoryIcons = {
+            "Analytics": "Analytics.svg",
+            "Armazenamento": "Storage.svg",
+            "Banco de Dados": "BancoDeDados.svg",
+            "Computing": "Computing.svg",
+            "Containers": "containers.svg",
+            "Integration": "Integration.svg",
+            "Network and Content Delivery": "Network&ContentDelivery.svg",
+            "Segurança": "security.svg"
+        };
+
+        const container = document.querySelector('.container');
+
+        // Group data by category
+        const groupedData = data.reduce((acc, item) => {
+            if (!acc[item.categoria]) {
+                acc[item.categoria] = [];
+            }
+            acc[item.categoria].push(item);
+            return acc;
+        }, {});
+
+        for (const category in groupedData) {
+            const categorySection = document.createElement('section');
+            categorySection.classList.add('category-section');
+
+            const categoryHeader = document.createElement('div');
+            categoryHeader.classList.add('category-header');
+            categoryHeader.innerHTML = `
+                <img src="${categoryIcons[category]}" alt="${category} Icon">
+                <h2>${category}</h2>
+            `;
+            categorySection.appendChild(categoryHeader);
+
+            const servicesGrid = document.createElement('div');
+            servicesGrid.classList.add('services-grid');
+
+            // Group services within each category
+            const servicesInCategory = groupedData[category].reduce((acc, item) => {
+                if (!acc[item.servico_aws]) {
+                    acc[item.servico_aws] = { description: item.descricao, mus: [] };
+                }
+                acc[item.servico_aws].mus.push({
+                    name: item.recurso_monitoravel,
+                    description: item.descricao, // This description is for the MU, not the service
+                    metrics: item.metricas_chave
+                });
+                return acc;
+            }, {});
+
+            for (const serviceName in servicesInCategory) {
+                const serviceData = servicesInCategory[serviceName];
+                const serviceCard = document.createElement('div');
+                serviceCard.classList.add('service-card');
+                serviceCard.innerHTML = `
+                    <div class="service-header">
+                        <h3 class="service-title">${serviceName}</h3>
+                    </div>
+                    <div class="service-description">${serviceData.description}</div>
+                    <h4 class="mus-title">Monitorable Units (M.U.) aplicáveis</h4>
+                    <ul class="mus-list">
+                        ${serviceData.mus.map(mu => `
+                            <li>
+                                <div class="mu-name">${mu.name}</div>
+                                <div class="mu-description">${mu.description}</div>
+                                <div class="mu-metrics">Métricas Chave: ${mu.metrics.join(', ')}</div>
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+                servicesGrid.appendChild(serviceCard);
+            }
+
+            categorySection.appendChild(servicesGrid);
+            container.appendChild(categorySection);
+        }
+    </script>
+</body>
+</html>
+
+
