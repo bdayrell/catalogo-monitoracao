@@ -128,13 +128,28 @@
         }
 
         .definition-box h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
             color: #F1A22D;
-            font-weight: 700;
+            font-weight: 800;
             text-align: center;
             position: relative;
             z-index: 2;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .definition-box h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, #F1A22D 50%, transparent 100%);
+            border-radius: 2px;
         }
 
         .characteristics-grid {
@@ -176,6 +191,45 @@
 
         .characteristic-item:hover::before {
             width: 6px;
+        }
+
+        .characteristic-item:hover .characteristic-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .characteristic-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(241, 162, 45, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(241, 162, 45, 0.4);
+        }
+
+        .characteristic-icon::before {
+            font-size: 1.2rem;
+            color: #F1A22D;
+            font-weight: bold;
+        }
+
+        .characteristic-item:nth-child(1) .characteristic-icon::before {
+            content: '🔍';
+        }
+
+        .characteristic-item:nth-child(2) .characteristic-icon::before {
+            content: '⚙️';
+        }
+
+        .characteristic-item:nth-child(3) .characteristic-icon::before {
+            content: '📊';
+        }
+
+        .characteristic-item:nth-child(4) .characteristic-icon::before {
+            content: '💰';
         }
 
         .characteristic-title {
@@ -359,7 +413,8 @@
             }
 
             .definition-box h3 {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
+                letter-spacing: 1px;
             }
 
             .characteristics-grid {
@@ -369,6 +424,15 @@
 
             .characteristic-item {
                 padding: 1.2rem;
+            }
+
+            .characteristic-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .characteristic-icon::before {
+                font-size: 1rem;
             }
 
             .characteristic-title {
@@ -467,11 +531,21 @@
             }
 
             .definition-box h3 {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
+                letter-spacing: 1px;
             }
 
             .characteristic-item {
                 padding: 1rem;
+            }
+
+            .characteristic-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .characteristic-icon::before {
+                font-size: 0.9rem;
             }
 
             .characteristic-title {
@@ -506,21 +580,25 @@
             <p>Uma <span class="highlight">Monitorable Unit (M.U.)</span> é qualquer unidade de monitoramento na infraestrutura que precisa ser acompanhada para garantir performance, disponibilidade e cumprimento de SLA.</p>
             
             <div class="definition-box">
-                <h3>Características Principais:</h3>
+                <h3>Características Principais</h3>
                 <div class="characteristics-grid">
                     <div class="characteristic-item">
+                        <div class="characteristic-icon"></div>
                         <div class="characteristic-title">Identificável</div>
                         <div class="characteristic-description">Possui uma identidade única dentro do ambiente AWS</div>
                     </div>
                     <div class="characteristic-item">
+                        <div class="characteristic-icon"></div>
                         <div class="characteristic-title">Configurável</div>
                         <div class="characteristic-description">Permite aplicação de configurações específicas de monitoramento</div>
                     </div>
                     <div class="characteristic-item">
+                        <div class="characteristic-icon"></div>
                         <div class="characteristic-title">Gerador de Observabilidade</div>
                         <div class="characteristic-description">Emite métricas, logs e eventos</div>
                     </div>
                     <div class="characteristic-item">
+                        <div class="characteristic-icon"></div>
                         <div class="characteristic-title">Unidade de Cobrança</div>
                         <div class="characteristic-description">Serve como base para precificação do serviço de monitoramento</div>
                     </div>
