@@ -98,23 +98,113 @@
         .definition-box {
             background: linear-gradient(135deg, #11713F 0%, #0C502C 100%);
             color: #F8F8F8;
-            padding: 1.5rem;
-            border-radius: 10px;
+            padding: 2rem;
+            border-radius: 15px;
             margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(17, 113, 63, 0.3);
         }
 
-        .definition-box p {
-            color: #FFFFFF;
+        .definition-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #F1A22D 0%, #FFB84D 50%, #F1A22D 100%);
         }
 
-        .definition-box p strong {
-            color: #F1A22D;
+        .definition-box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(241, 162, 45, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .definition-box h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
             color: #F1A22D;
+            font-weight: 700;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .characteristics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .characteristic-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(241, 162, 45, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .characteristic-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #F1A22D 0%, #FFB84D 100%);
+            transition: width 0.3s ease;
+        }
+
+        .characteristic-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(241, 162, 45, 0.2);
+            border-color: rgba(241, 162, 45, 0.6);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .characteristic-item:hover::before {
+            width: 6px;
+        }
+
+        .characteristic-title {
+            color: #F1A22D;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .characteristic-title::before {
+            content: '●';
+            color: #F1A22D;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .characteristic-description {
+            color: #FFFFFF;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            opacity: 0.95;
         }
 
         .category-section {
@@ -265,14 +355,27 @@
             }
 
             .definition-box {
-                padding: 1rem;
+                padding: 1.5rem;
             }
 
             .definition-box h3 {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
-            .definition-box p {
+            .characteristics-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .characteristic-item {
+                padding: 1.2rem;
+            }
+
+            .characteristic-title {
+                font-size: 1rem;
+            }
+
+            .characteristic-description {
                 font-size: 0.9rem;
             }
 
@@ -358,6 +461,26 @@
             .category-header h2 {
                 font-size: 1.3rem;
             }
+
+            .definition-box {
+                padding: 1.2rem;
+            }
+
+            .definition-box h3 {
+                font-size: 1.1rem;
+            }
+
+            .characteristic-item {
+                padding: 1rem;
+            }
+
+            .characteristic-title {
+                font-size: 0.95rem;
+            }
+
+            .characteristic-description {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -384,10 +507,24 @@
             
             <div class="definition-box">
                 <h3>Características Principais:</h3>
-                <p>• <strong>Identificável:</strong> Possui uma identidade única dentro do ambiente AWS<br>
-                • <strong>Configurável:</strong> Permite aplicação de configurações específicas de monitoramento<br>
-                • <strong>Gerador de Observabilidade:</strong> Emite métricas, logs e eventos<br>
-                • <strong>Unidade de Cobrança:</strong> Serve como base para precificação do serviço de monitoramento</p>
+                <div class="characteristics-grid">
+                    <div class="characteristic-item">
+                        <div class="characteristic-title">Identificável</div>
+                        <div class="characteristic-description">Possui uma identidade única dentro do ambiente AWS</div>
+                    </div>
+                    <div class="characteristic-item">
+                        <div class="characteristic-title">Configurável</div>
+                        <div class="characteristic-description">Permite aplicação de configurações específicas de monitoramento</div>
+                    </div>
+                    <div class="characteristic-item">
+                        <div class="characteristic-title">Gerador de Observabilidade</div>
+                        <div class="characteristic-description">Emite métricas, logs e eventos</div>
+                    </div>
+                    <div class="characteristic-item">
+                        <div class="characteristic-title">Unidade de Cobrança</div>
+                        <div class="characteristic-description">Serve como base para precificação do serviço de monitoramento</div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -677,5 +814,3 @@
     </script>
 </body>
 </html>
-
-
