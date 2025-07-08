@@ -610,6 +610,13 @@
             opacity: 0.9;
         }
 
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -974,8 +981,8 @@
                         <span id="tierPrice">R$ 4.500</span>
                     </div>
                     <div class="price-item">
-                        <span>Setup Padrão:</span>
-                        <span id="setupPrice">R$ 8.000</span>
+                        <span>Setup (12x):</span>
+                        <span id="setupPrice">R$ 666,67</span>
                     </div>
                     <div class="price-item">
                         <span>Horas de Atuação:</span>
@@ -983,7 +990,7 @@
                     </div>
                     <div class="price-item">
                         <span><strong>Total:</strong></span>
-                        <span id="totalPriceBreakdown"><strong>R$ 16.700</strong></span>
+                        <span id="totalPriceBreakdown"><strong>R$ 9.366,67</strong></span>
                     </div>
                 </div>
 
@@ -1300,7 +1307,7 @@
 
             const extraHours = Math.max(0, currentHours - hoursIncluded);
             const hoursPrice = extraHours * 420;
-            const totalPrice = tierPrice + setupPrice + hoursPrice;
+            const totalPrice = tierPrice + (setupPrice / 12) + hoursPrice;
 
             const needsConsultation = Object.values(advancedFeatures).some(feature => feature);
 
@@ -1337,24 +1344,24 @@
                 return;
             }
 
-            totalPrice.textContent = `R$ ${prices.totalPrice.toLocaleString('pt-BR')}`;
+            totalPrice.textContent = `R$ ${prices.totalPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             tierPriceEl.textContent = `R$ ${prices.tierPrice.toLocaleString('pt-BR')}`;
             
             if (currentTier === 'essential') {
-                setupPriceEl.textContent = `R$ ${prices.setupPrice.toLocaleString('pt-BR')}`;
+                setupPriceEl.textContent = `R$ ${(prices.setupPrice / 12).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             } else {
                 setupPriceEl.textContent = 'Incluso';
             }
 
             if (prices.extraHours > 0) {
-                hoursPriceEl.textContent = `R$ ${prices.hoursPrice.toLocaleString('pt-BR')} (${prices.extraHours}h extras)`;
+                hoursPriceEl.textContent = `R$ ${prices.hoursPrice.toLocaleString('pt-BR')} (${prices.extraHours}h excedentes)`;
             } else if (currentTier === 'pro' && currentHours <= prices.hoursIncluded) {
                 hoursPriceEl.textContent = `Incluído (${currentHours}h de ${prices.hoursIncluded}h)`;
             } else {
                 hoursPriceEl.textContent = `R$ ${prices.hoursPrice.toLocaleString('pt-BR')}`;
             }
 
-            totalPriceBreakdown.innerHTML = `<strong>R$ ${prices.totalPrice.toLocaleString('pt-BR')}</strong>`;
+            totalPriceBreakdown.innerHTML = `<strong>R$ ${prices.totalPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>`;
 
             if (needsConsultation) {
                 consultationNotice.style.display = 'block';
@@ -1532,6 +1539,22 @@
 
             categorySection.appendChild(servicesGrid);
             container.appendChild(categorySection);
+        }
+
+        // Reorganizar seções: mover catálogo para depois da definição
+        const catalogSection = document.querySelector('.catalog-section');
+        const definitionSection = document.querySelector('.definition-section');
+        
+        if (catalogSection && definitionSection) {
+            // Inserir catálogo após a definição
+            definitionSection.parentNode.insertBefore(catalogSection, definitionSection.nextSibling);
+        }
+        
+        // Reorganizar características em 2x2
+        const featuresGrid = document.querySelector('.features-grid');
+        if (featuresGrid) {
+            featuresGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            featuresGrid.style.gap = '2rem';
         }
     </script>
 </body>
